@@ -3,6 +3,7 @@ package br.com.vanjeilson.dslist.services;
 import br.com.vanjeilson.dslist.dto.GameDTO;
 import br.com.vanjeilson.dslist.dto.GameMinDTO;
 import br.com.vanjeilson.dslist.entities.Game;
+import br.com.vanjeilson.dslist.projections.GameMinProjection;
 import br.com.vanjeilson.dslist.repositories.GameRepository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,11 @@ public class GameService {
         return result.stream().map(x -> new GameMinDTO(x)).toList();
 //        List<GameMinDTO> dto = result.stream().map(x -> new GameMinDTO(x)).toList();
 //        return dto;
+    }
+
+    @Transactional(readOnly = true)
+    public List<GameMinDTO> findByList(Long listId){
+        List<GameMinProjection> result = gameRepository.searchByList(listId);
+        return result.stream().map(x -> new GameMinDTO(x)).toList();
     }
 }
