@@ -2,6 +2,7 @@ package br.com.vanjeilson.dslist.controllers;
 
 import br.com.vanjeilson.dslist.dto.GameListDTO;
 import br.com.vanjeilson.dslist.dto.GameMinDTO;
+import br.com.vanjeilson.dslist.dto.ReplacementDTO;
 import br.com.vanjeilson.dslist.services.GameListService;
 import br.com.vanjeilson.dslist.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +38,9 @@ public class GameListController {
         return result;
     }
 
-//    @PostMapping(value = "/{listId}/replacement")
-//    public void move(@PathVariable Long listId, @RequestBody ReplacementDTO body) {
-//        gameListService.move(listId, body.getSourceIndex(), body.getDestinationIndex());
-//    }
+    @PostMapping(value = "/{listId}/replacement")
+    public void move(@PathVariable Long listId, @RequestBody ReplacementDTO body) {
+        gameListService.move(listId, body.getSourceIndex(), body.getDestinationIndex());
+    }
+
 }
